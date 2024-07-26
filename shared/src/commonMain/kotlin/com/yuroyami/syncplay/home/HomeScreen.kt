@@ -159,138 +159,138 @@ fun HomeScreen(savedConfig: HomeConfig) {
                 snackbarHost = { SnackbarHost(snacky) },
 
                 /* The top bar contains a syncplay logo, text, nightmode toggle button, and a setting button + its screen */
-                topBar = {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            //.wrapContentHeight()
-                            .background(color = Color.Transparent /* Paletting.BG_DARK_1 */),
-                        shape = RoundedCornerShape(topEnd = 0.dp, topStart = 0.dp, bottomEnd = 12.dp, bottomStart = 12.dp),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer),
-                        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 12.dp),
-                    ) {
-                        /* Settings Button */
-                        val settingState = remember { mutableIntStateOf(0) }
-
-                        Column(horizontalAlignment = CenterHorizontally) {
-                            ListItem(
-                                modifier = Modifier.fillMaxWidth()
-                                    .padding(bottom = 12.dp, top = (TopAppBarDefaults.windowInsets.asPaddingValues().calculateTopPadding() + 12.dp)),
-                                colors = ListItemDefaults.colors(containerColor = Color.Transparent),
-                                trailingContent = {
-                                    Row(verticalAlignment = CenterVertically) {
-                                        NightModeToggler(
-                                            modifier = Modifier.size(58.dp),
-                                            state = nightMode
-                                        )
-
-                                        IconButton(
-                                            onClick = {
-                                                when (settingState.intValue) {
-                                                    0 -> settingState.intValue = 1
-                                                    1 -> settingState.intValue = 0
-                                                    else -> settingState.intValue = 1
-                                                }
-
-                                            }) {
-                                            Box {
-
-                                                Icon(
-                                                    imageVector = when (settingState.intValue) {
-                                                        0 -> Icons.Filled.Settings
-                                                        1 -> Icons.Filled.Close
-                                                        else -> Icons.AutoMirrored.Filled.Redo
-                                                    },
-                                                    contentDescription = "",
-                                                    modifier = Modifier.size(31.dp),
-                                                    tint = MaterialTheme.colorScheme.primary
-                                                )
-                                                Icon(
-                                                    imageVector = when (settingState.intValue) {
-                                                        0 -> Icons.Filled.Settings
-                                                        1 -> Icons.Filled.Close
-                                                        else -> Icons.AutoMirrored.Filled.Redo
-                                                    },
-                                                    contentDescription = "",
-                                                    modifier = Modifier.size(30.dp).gradientOverlay(),
-                                                )
-                                            }
-                                        }
-                                    }
-                                },
-
-                                /* Syncplay Header (logo + text) */
-                                headlineContent = {
-                                    Row(modifier = Modifier.clickable(
-                                        enabled = true,
-                                        interactionSource = remember { MutableInteractionSource() },
-                                        indication = rememberRipple(
-                                            bounded = false,
-                                            color = Color(100, 100, 100, 200)
-                                        )
-                                    ) { aboutpopupState.value = true }
-                                    ) {
-                                        Image(
-                                            imageVector = vectorResource(Res.drawable.syncplay_logo_gradient), contentDescription = "",
-                                            modifier = Modifier.height(32.dp).aspectRatio(1f)
-                                        )
-
-                                        Spacer(modifier = Modifier.width(12.dp))
-
-                                        Box(modifier = Modifier.padding(bottom = 6.dp)) {
-                                            Text(
-                                                modifier = Modifier.wrapContentWidth(),
-                                                text = "Syncplay",
-                                                style = TextStyle(
-                                                    color = Paletting.SP_PALE,
-                                                    drawStyle = Stroke(
-                                                        miter = 10f,
-                                                        width = 2f,
-                                                        join = StrokeJoin.Round
-                                                    ),
-                                                    shadow = Shadow(
-                                                        color = Paletting.SP_INTENSE_PINK,
-                                                        offset = Offset(0f, 10f),
-                                                        blurRadius = 5f
-                                                    ),
-                                                    fontFamily = FontFamily(Font(Res.font.Directive4_Regular)),
-                                                    fontSize = 24.sp,
-                                                )
-                                            )
-
-                                            Text(
-                                                text = "Syncplay",
-                                                style = TextStyle(
-                                                    brush = Brush.linearGradient(colors = Paletting.SP_GRADIENT),
-                                                    fontFamily = FontFamily(Font(Res.font.Directive4_Regular)),
-                                                    fontSize = 24.sp,
-                                                )
-                                            )
-                                        }
-                                    }
-                                },
-                            )
-                            /* Settings */
-
-                            androidx.compose.animation.AnimatedVisibility(
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                visible = settingState.intValue != 0,
-                                enter = scaleIn(),
-                                exit = scaleOut()
-                            ) {
-                                SettingsUI.SettingsGrid(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    settingcategories = LocalGlobalSettings.current,
-                                    state = settingState,
-                                    onCardClicked = {
-                                        settingState.intValue = 2
-                                    }
-                                )
-                            }
-                        }
-                    }
-                },
+//                topBar = {
+//                    Card(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            //.wrapContentHeight()
+//                            .background(color = Color.Transparent /* Paletting.BG_DARK_1 */),
+//                        shape = RoundedCornerShape(topEnd = 0.dp, topStart = 0.dp, bottomEnd = 12.dp, bottomStart = 12.dp),
+//                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer),
+//                        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 12.dp),
+//                    ) {
+//                        /* Settings Button */
+//                        val settingState = remember { mutableIntStateOf(0) }
+//
+//                        Column(horizontalAlignment = CenterHorizontally) {
+//                            ListItem(
+//                                modifier = Modifier.fillMaxWidth()
+//                                    .padding(bottom = 12.dp, top = (TopAppBarDefaults.windowInsets.asPaddingValues().calculateTopPadding() + 12.dp)),
+//                                colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+//                                trailingContent = {
+//                                    Row(verticalAlignment = CenterVertically) {
+//                                        NightModeToggler(
+//                                            modifier = Modifier.size(58.dp),
+//                                            state = nightMode
+//                                        )
+//
+//                                        IconButton(
+//                                            onClick = {
+//                                                when (settingState.intValue) {
+//                                                    0 -> settingState.intValue = 1
+//                                                    1 -> settingState.intValue = 0
+//                                                    else -> settingState.intValue = 1
+//                                                }
+//
+//                                            }) {
+//                                            Box {
+//
+//                                                Icon(
+//                                                    imageVector = when (settingState.intValue) {
+//                                                        0 -> Icons.Filled.Settings
+//                                                        1 -> Icons.Filled.Close
+//                                                        else -> Icons.AutoMirrored.Filled.Redo
+//                                                    },
+//                                                    contentDescription = "",
+//                                                    modifier = Modifier.size(31.dp),
+//                                                    tint = MaterialTheme.colorScheme.primary
+//                                                )
+//                                                Icon(
+//                                                    imageVector = when (settingState.intValue) {
+//                                                        0 -> Icons.Filled.Settings
+//                                                        1 -> Icons.Filled.Close
+//                                                        else -> Icons.AutoMirrored.Filled.Redo
+//                                                    },
+//                                                    contentDescription = "",
+//                                                    modifier = Modifier.size(30.dp).gradientOverlay(),
+//                                                )
+//                                            }
+//                                        }
+//                                    }
+//                                },
+//
+//                                /* Syncplay Header (logo + text) */
+//                                headlineContent = {
+//                                    Row(modifier = Modifier.clickable(
+//                                        enabled = true,
+//                                        interactionSource = remember { MutableInteractionSource() },
+//                                        indication = rememberRipple(
+//                                            bounded = false,
+//                                            color = Color(100, 100, 100, 200)
+//                                        )
+//                                    ) { aboutpopupState.value = true }
+//                                    ) {
+//                                        Image(
+//                                            imageVector = vectorResource(Res.drawable.syncplay_logo_gradient), contentDescription = "",
+//                                            modifier = Modifier.height(60.dp).aspectRatio(1f)
+//                                        )
+//
+//                                        Spacer(modifier = Modifier.width(12.dp))
+//
+//                                        Box(modifier = Modifier.padding(top = 20.dp)) {
+//                                            Text(
+//                                                modifier = Modifier.wrapContentWidth(),
+//                                                text = "",
+//                                                style = TextStyle(
+//                                                    color = Paletting.SP_PALE,
+//                                                    drawStyle = Stroke(
+//                                                        miter = 10f,
+//                                                        width = 2f,
+//                                                        join = StrokeJoin.Round
+//                                                    ),
+//                                                    shadow = Shadow(
+//                                                        color = Paletting.SP_INTENSE_PINK,
+//                                                        offset = Offset(0f, 10f),
+//                                                        blurRadius = 5f
+//                                                    ),
+//                                                    fontFamily = FontFamily(Font(Res.font.Directive4_Regular)),
+//                                                    fontSize = 24.sp,
+//                                                )
+//                                            )
+//
+//                                            Text(
+//                                                text = "L&H",
+//                                                style = TextStyle(
+//                                                    brush = Brush.linearGradient(colors = Paletting.SP_GRADIENT_1),
+//                                                    fontFamily = FontFamily(Font(Res.font.Directive4_Regular)),
+//                                                    fontSize = 24.sp,
+//                                                )
+//                                            )
+//                                        }
+//                                    }
+//                                },
+//                            )
+//                            /* Settings */
+//
+//                            androidx.compose.animation.AnimatedVisibility(
+//                                modifier = Modifier
+//                                    .fillMaxWidth(),
+//                                visible = settingState.intValue != 0,
+//                                enter = scaleIn(),
+//                                exit = scaleOut()
+//                            ) {
+//                                SettingsUI.SettingsGrid(
+//                                    modifier = Modifier.fillMaxWidth(),
+//                                    settingcategories = LocalGlobalSettings.current,
+//                                    state = settingState,
+//                                    onCardClicked = {
+//                                        settingState.intValue = 2
+//                                    }
+//                                )
+//                            }
+//                        }
+//                    }
+//                },
 
                 /* The actual content of the log-in screen */
                 content = { paddingValues ->
@@ -324,7 +324,7 @@ fun HomeScreen(savedConfig: HomeConfig) {
                         ) {
 
                             FlexibleFancyText(
-                                text = lyricist.strings.connectUsernameA,
+                                text = "用户名",
                                 size = 20f,
                                 textAlign = TextAlign.Center,
                                 fillingColors = listOf(MaterialTheme.colorScheme.primary),
@@ -351,9 +351,9 @@ fun HomeScreen(savedConfig: HomeConfig) {
                                 )
 
                                 OutlinedTextField(
-                                    modifier = Modifier.gradientOverlay(),
+                                    modifier = Modifier.gradientOverlay(Paletting.SP_GRADIENT_2),
                                     singleLine = true,
-                                    label = { Text(lyricist.strings.connectUsernameB) },
+//                                    label = { Text("用户名") },
                                     leadingIcon = { Icon(imageVector = Icons.Filled.PersonPin, "") },
                                     supportingText = { /* Text(stringResource(R.string.connect_username_c), fontSize = 10.sp) */ },
                                     keyboardActions = KeyboardActions(onDone = {
@@ -377,12 +377,12 @@ fun HomeScreen(savedConfig: HomeConfig) {
 
 
                             FlexibleFancyText(
-                                text = lyricist.strings.connectRoomnameA,
+                                text = "房间名",
                                 size = 20f,
                                 textAlign = TextAlign.Center,
                                 fillingColors = listOf(MaterialTheme.colorScheme.primary),
                                 font = Font(Res.font.Directive4_Regular),
-                                shadowColors = listOf(Color.Gray)
+                                shadowColors = listOf(Color.Blue),
                             )
 
                             Spacer(modifier = Modifier.height(10.dp))
@@ -391,7 +391,7 @@ fun HomeScreen(savedConfig: HomeConfig) {
                                 OutlinedTextField(
                                     modifier = Modifier.focusable(false),
                                     colors = OutlinedTextFieldDefaults.colors(
-                                        focusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                                        focusedContainerColor = MaterialTheme.colorScheme.onSecondaryContainer,
                                         unfocusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
                                         disabledContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
                                     ),
@@ -404,9 +404,9 @@ fun HomeScreen(savedConfig: HomeConfig) {
                                 )
 
                                 OutlinedTextField(
-                                    modifier = Modifier.gradientOverlay(),
+                                    modifier = Modifier.gradientOverlay(Paletting.SP_GRADIENT_2),
                                     singleLine = true,
-                                    label = { Text(lyricist.strings.connectRoomnameB) },
+//                                    label = { Text("房间名") },
                                     leadingIcon = { Icon(imageVector = Icons.Filled.MeetingRoom, "") },
                                     supportingText = { /* Text(stringResource(R.string.connect_roomname_c), fontSize = 10.sp) */ },
                                     keyboardActions = KeyboardActions(onDone = {
@@ -427,7 +427,7 @@ fun HomeScreen(savedConfig: HomeConfig) {
                             horizontalAlignment = CenterHorizontally,
                         ) {
                             FlexibleFancyText(
-                                text = lyricist.strings.connectServerA,
+                                text = "频道",
                                 size = 20f,
                                 textAlign = TextAlign.Center,
                                 fillingColors = listOf(MaterialTheme.colorScheme.primary),
@@ -462,10 +462,10 @@ fun HomeScreen(savedConfig: HomeConfig) {
                                     OutlinedTextField(
                                         modifier = Modifier
                                             .menuAnchor()
-                                            .gradientOverlay(),
+                                            .gradientOverlay(Paletting.SP_GRADIENT_2),
                                         singleLine = true,
                                         readOnly = true,
-                                        value = selectedServer.replace("151.80.32.178", "syncplay.pl"),
+                                        value = selectedServer.replace("151.80.32.178", "频道"),
                                         supportingText = { /* Text(stringResource(R.string.connect_server_c), fontSize = 9.sp) */ },
                                         onValueChange = { },
                                         trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) }

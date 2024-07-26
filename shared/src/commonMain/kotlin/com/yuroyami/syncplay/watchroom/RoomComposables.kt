@@ -124,7 +124,7 @@ object RoomComposables {
                 Image(
                     painter = painterResource(Res.drawable.syncplay_logo_gradient), contentDescription = "",
                     modifier = Modifier
-                        .height(if (pipModeObserver) 40.dp else 84.dp)
+                        .height(if (pipModeObserver) 60.dp else 130.dp)
                         .aspectRatio(1f)
                        // .radiantOverlay(offset = Offset(x = 50f, y = 80f))
                 )
@@ -134,7 +134,7 @@ object RoomComposables {
                 Box(modifier = Modifier.padding(bottom = 6.dp)) {
                     Text(
                         modifier = Modifier.wrapContentWidth(),
-                        text = "Syncplay",
+                        text = "",
                         style = TextStyle(
                             color = Paletting.SP_PALE,
                             drawStyle = Stroke(
@@ -153,10 +153,10 @@ object RoomComposables {
                     )
                     Text(
                         modifier = Modifier.wrapContentWidth(),
-                        text = "Syncplay",
+                        text = "L&H同步播放器",
                         style = TextStyle(
                             brush = Brush.linearGradient(
-                                colors = Paletting.SP_GRADIENT
+                                colors = Paletting.SP_GRADIENT_1
                             ),
                             fontFamily = FontFamily(Font(Res.font.Directive4_Regular))
                         ),

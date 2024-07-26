@@ -19,12 +19,13 @@ object Paletting {
     val MSG_ERROR = Color(150, 20, 20, 255)
     val MSG_CHAT = Color.White
     val MSG_TIMESTAMP = Color(255, 95, 135)
+    val MSG_TIMESTAMP1 = Color(33, 150, 243, 255)
 
     /** Some room widget colors */
     val ROOM_USER_READY_ICON = Color(130, 203, 120, 255)
     val ROOM_USER_UNREADY_ICON = Color(247, 92, 94, 255)
     val ROOM_USER_USER_TEXT_SELF = Color(236, 191, 57)
-
+    val SP_GRADIENT_1 = listOf(ROOM_USER_READY_ICON, MSG_FRIEND_TAG, MSG_TIMESTAMP1)
 
     val OLD_SP_YELLOW = Color(255, 214, 111)
     val OLD_SP_PINK = Color(239, 100, 147)
@@ -45,6 +46,7 @@ object Paletting {
     val BG_LIGHT_2 = Color(223, 220, 220, 255)
     val BG_Gradient_LIGHT = listOf(BG_LIGHT_1, BG_LIGHT_2, BG_LIGHT_1)
 
+    val SP_GRADIENT_2 = listOf(BG_LIGHT_2, BG_LIGHT_2, Color.White)
     val SHADER_GRADIENT = listOf(
         Color.Transparent,
         Color(0, 0, 0, 100),

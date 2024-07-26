@@ -1,4 +1,5 @@
 {
+  "originHash" : "fa0a1e0b7d348ece7dc56d5a789a0b45670c9e436c161fee24f94e75b82a787b",
   "pins" : [
     {
       "identity" : "swift-atomics",
@@ -82,5 +83,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
